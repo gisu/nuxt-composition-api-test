@@ -43,6 +43,45 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
+  /**
+   * Tailwind
+   */
+  tailwindcss: {
+    exposeConfig: true,
+    jit: process.env.NODE_ENV !== 'production'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {
+    postcss: {
+      plugins: {
+        'postcss-preset-env': {
+          stage: 1,
+          autoprefixer: {
+            grid: process.env.NODE_ENV === 'production',
+            cascade: false
+          },
+          features: {
+            'focus-within-pseudo-class': false,
+            'nesting-rules': true
+          }
+        },
+        'postcss-custom-properties': {},
+        cssnano: {
+          preset: [
+            'default',
+            {
+              discardComments: {
+                removeAll: true
+              }
+            }
+          ]
+        }
+      }
+    },
+    /*
+     ** Extract CSS
+     */
+    extractCSS: process.env.NODE_ENV === 'production'
+  }
 }
