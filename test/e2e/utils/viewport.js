@@ -7,7 +7,7 @@ const resolutions = [
   'iphone-6+',
   'iphone-6',
   'iphone-5'
-];
+]
 
 export function createTestInAllResolutions (fn) {
   resolutions.forEach((res) => {
@@ -15,9 +15,9 @@ export function createTestInAllResolutions (fn) {
       beforeEach(function () {
         // run these tests as if in a desktop
         // browser with a 720p monitor
-        cy.viewport(res);
-      });
-      fn(res);
-    });
-  });
+        cy.viewport(res)
+      })
+      fn(res)
+    })
+  })
 }
